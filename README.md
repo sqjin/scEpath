@@ -45,9 +45,9 @@ This directory includes the following main scripts:
 
 
 For each run, the final results of the analysis are deposited in the "results" directory:
-results/figures, containing PDF figures of the analysis.
-results/PDG_in_each_cluster, containing the identified pseudotime-dependent marker genes in each cluster
-results/temporalfiles, containing intermediate results from the analysis.
+1) results/figures, containing PDF figures of the analysis.
+2) results/PDG_in_each_cluster, containing the identified pseudotime-dependent marker genes in each cluster
+3) results/temporalfiles, containing intermediate results from the analysis.
 
 
 Please refer to scEpath_demo.m for instructions on how to use this code.

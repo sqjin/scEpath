@@ -24,26 +24,24 @@ This directory includes the following main scripts:
 1) scEpath_demo.m -- an example run of scEpath on a specific dataset
 2) preprocessing.m -- do preprocessing of the input data (if applicable) 
 3) constructingSFNetwork.m -- construct a gene-gene co-expression network
-
 4) estimatingscEnergy.m -- estimate the single cell energy (scEnergy) for each cell
 5) ECA.m -- prinpipal component analysis of energy matrix
 6) clusteringCells.m -- perform unsupervised clustering of single cell data
-(7) reorderClusterLabels.m -- reorder the clusters
-(8) inferingLineage.m -- infer the cell lineage hierarchy
-(9) FindMDST.m -- find the minimal directed spanning tree in a directed graph
-(10) inferingPseudotime.m -- reconstruct pseudotime
-(11) smootheningExpr.m -- calculating the smooth version of expression level based on pseudotime
-(12) identify_pseudotime_dependent_genes.m -- identify pseudotime dependent marker genes
-(13) identify_keyTF.m -- identify key transcription factors responsible for cell fate decision
-
+7) reorderClusterLabels.m -- reorder the clusters
+8) inferingLineage.m -- infer the cell lineage hierarchy
+9) FindMDST.m -- find the minimal directed spanning tree in a directed graph
+10) inferingPseudotime.m -- reconstruct pseudotime
+11) smootheningExpr.m -- calculating the smooth version of expression level based on pseudotime
+12) identify_pseudotime_dependent_genes.m -- identify pseudotime dependent marker genes
+13) identify_keyTF.m -- identify key transcription factors responsible for cell fate decision
 ---------------------------
-(14) cluster_visualization.m -- visualize cells on two-dimensional space
-(15) lineage_visualization.m -- display cell lineage hierarchy with transition probability
-(16) scEnergy_comparison_visualization.m -- comparison of scEnergy among different clusters
-(17) landscape_visualization -- display energy landscape in 2-D contour plot and 3-D surface
-(18) plot_genes_in_pseudotime.m -- plot the temporal dynamics of individual gene along pseudotime
-(19) plot_rolling_wave.m -- create "rolling wave" showing the temporal pattern of pseudotime-dependent genes and display gene clusters showing similar patterns
-(20) plot_rolling_wave_TF.m -- create "rolling wave" showing the temporal pattern of key transcription factors
+14) cluster_visualization.m -- visualize cells on two-dimensional space
+15) lineage_visualization.m -- display cell lineage hierarchy with transition probability
+16) scEnergy_comparison_visualization.m -- comparison of scEnergy among different clusters
+17) landscape_visualization -- display energy landscape in 2-D contour plot and 3-D surface
+18) plot_genes_in_pseudotime.m -- plot the temporal dynamics of individual gene along pseudotime
+19) plot_rolling_wave.m -- create "rolling wave" showing the temporal pattern of pseudotime-dependent genes and display gene clusters showing similar patterns
+20) plot_rolling_wave_TF.m -- create "rolling wave" showing the temporal pattern of key transcription factors
 
 
 For each run, the final results of the analysis are deposited in the "results" directory:

@@ -24,7 +24,7 @@ idxCluster = clusterIfo.idxCluster;
 numCluster = length(unique(clusterIfo.identity));
 %% (1) find the core cell in each cluster
 % thresh = 0.8; % select the cells which include 80% energy in each cluster
-centroidCoreCell = zeros(numCluster,2);FCoreCell = zeros(numCluster,1);
+centroidCoreCell = zeros(numCluster,size(ydata,2));FCoreCell = zeros(numCluster,1);
 idxClusterCorecell = cell(1,numCluster);  ydataCoreCell = cell(1,numCluster);
 if thresh < 1
     for i = 1:numCluster

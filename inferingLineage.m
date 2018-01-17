@@ -2,7 +2,7 @@ function lineageIfo = inferingLineage(sEcell,ydata,clusterIfo,alpha,thresh)
 % reconstruct the pseudotime 
 % Inputs: 
 %   scEcell : m x 1 vector, single cell energy
-%   ydata : m x 2, 2-D coordindates from dimension reduction
+%   ydata : m x nPC, nPC-D coordindates from dimension reduction
 %   clusterIfo : a struct giving the cell cluster information
 %   alpha : significance level for a two-sided Wilcoxon rank-sum test of the distribution of scEnergy between two metacell,default= 0.01
 %   thresh : proportion of cells included in the metacell, default= 0.8

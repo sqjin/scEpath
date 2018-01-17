@@ -22,7 +22,7 @@ proData = preprocessing(iniData,minCells, minGenes,logNormalize,filterRibo)
 %   proData: a struct variable (store the data after QC) contains the same fields with iniData
 
 %% step 3: construct a gene-gene co-expression network
-% by default: the network will be constructed based on scale-free creteria of biological networks;
+% by default: the network will be constructed by choosing the highest threshold without a significant reduction in the total number of genes;
 % if one would like to quickly construct a network using a given threshold,then set quick_construct = 1 and give a tau (e.g.0.4);
 % quick_construct = 0; tau = [];
 quick_construct = 1; tau = 0.4;
@@ -35,7 +35,8 @@ networkIfo = constructingSFNetwork(proData.data',quick_construct,tau); % a struc
 % scE: energy matrix, the same dimension with data
 % scEcell; scEnergy of each cell
 % perform principal component analysis of the energy matrix scE
-ydata = ECA(scE);% ydata : m x 2, 2-D coordindates from dimension reduction
+ydata = ECA(scE);% ydata : m x nPC, nPC-D coordindates from dimension reduction
+ydata = ydata(:,1:2); % In this demo, only the first two significant components are used. 
 
 %% step 5: perform unsupervised clustering of single cell data
 C = []; % set C to be empty if one would like to determine the number of clusters by eigengap; otherwise please provide the number of desired clusters

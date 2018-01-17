@@ -15,7 +15,7 @@ function pseudotimeIfo = inferingPseudotime(Rscript,ydata,lineageIfo,clusterIfo,
 if ~exist('theta', 'var') || isempty(theta)
     theta = 0.75;
 end
-
+ydata = ydata(:,1:2);
 centroidCoreCell = lineageIfo.centroid; path = lineageIfo.path;
 idxCluster = clusterIfo.idxCluster; group = clusterIfo.identity;
 

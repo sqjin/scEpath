@@ -26,7 +26,7 @@ proData = preprocessing(iniData,minCells, minGenes,logNormalize,filterRibo)
 % if one would like to quickly construct a network using a given threshold,then set quick_construct = 1 and give a tau (e.g.0.4);
 % quick_construct = 0; tau = [];
 quick_construct = 1; tau = 0.4;
-networkIfo = constructingSFNetwork(proData.data',quick_construct,tau); % a struct variable
+networkIfo = constructingNetwork(proData.data',quick_construct,tau); % a struct variable
 % networkIfo.R: adjacency matrix (upper matrix) of the constructed network
 % networkIfo.IDselect: the index of selected genes in the constructed network
 

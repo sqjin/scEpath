@@ -1,10 +1,10 @@
-function networkIfo = constructingSFNetwork(data,quick_construct,thresh,showFigure,fig_width,fig_height)
+function networkIfo = constructingNetwork(data,quick_construct,thresh,showFigure,fig_width,fig_height)
 % construct a gene-gene co-expression network
 % Inputs:
 %    data: single cell data (rows are cells and columns are genes)
-%    quick_construct: default=0,the network will be constructed based on scale-free creteria of biological networks;
+%    quick_construct: default=0,the network will be constructed by choosing the highest threshold without a significant reduction in the total number of genes of;
 %    thresh: if quick_construct=1, thresh is the threshold for constructing a network. default = 0.1
-%    showFigure: boolean, to show the network metric (e.g.signed R^2, average connectivity and degree discontribution) or not, default= 1 (true)
+%    showFigure: boolean, to show the relationship between the number of nodes (genes) and the threshold or not, default= 1 (true)
 %    fig_width : the figure width, default=800
 %    fig_height : the figure height, default=250
 % Outputs:

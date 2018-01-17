@@ -3,7 +3,13 @@ function ydata = ECA(E)
 % Inputs: 
 %   E : energy matrix
 % Outputs:
-%   ydata : m x 2, 2-D coordindates from dimension reduction
+%   ydata : m x nPC, nPC-D coordindates from dimension reduction
 Ezscored = zscore(full(E));
-[~,score] = pca(Ezscored','NumComponents',3);
-ydata = score(:,1:2); 
+s = svd(Ezscored');
+y = s;
+beta = size(E,2)/size(E,1);
+coef = optimal_SVHT_coef(beta, 0)*median(s);
+y( y < coef ) = 0;
+nPC = nnz(y);
+[~,score,~,~,explained] = pca(Ezscored','NumComponents',nPC);
+ydata = score; 

@@ -96,7 +96,6 @@ for i = 1:length(thresh)
     num_nodes(i) = length(IDselect);
     sprintf('When tau is %.2f, the number of nodes is %d.',thresh(i),length(IDselect))
 end
-% num_nodes = cellfun(@length,IDselect);
 
 
 function [R,IDselect,deg] = calculatingAdjacencyMatrix(R,thresh)

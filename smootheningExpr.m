@@ -41,7 +41,11 @@ for index = 1:length(binCenters)
 end
 if ~isempty(index0)
     for i = 1:length(index0)
+        try
         aveExpr(:,index0(i)) = mean([aveExpr(:,index0(i)-1),aveExpr(:,index0(i)+1),aveExpr(:,index0(i)+2)],2);
+        catch
+        continue;
+        end
     end
 end
 % fitting cubic curve

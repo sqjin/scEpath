@@ -16,7 +16,7 @@ if ~exist('theta', 'var') || isempty(theta)
     theta = 0.75;
 end
 ydata = ydata(:,1:2);
-centroidCoreCell = lineageIfo.centroid; path = lineageIfo.path;
+centroidCoreCell = lineageIfo.centroid(:,1:2); path = lineageIfo.path;
 idxCluster = clusterIfo.idxCluster; group = clusterIfo.identity;
 
 % identify the main cells in each group to infer pesudotime
@@ -78,7 +78,7 @@ for j = 1:length(path)
     % judge which is the start state
     s = cellIndexpath{j}(cellOrder(1:floor(0.2*length(cellOrder))));
     t = cellIndexpath{j}(cellOrder(floor((1-0.2)*length(cellOrder)):end));
-    sNum = length(intersect(s,find(group == 1))); tNum = length(intersect(t,find(group == 1)));
+    sNum = length(intersect(s,find(group == lineageIfo.rootNode))); tNum = length(intersect(t,find(group == lineageIfo.rootNode)));
     if sNum < tNum 
         cellOrder = flipud(cellOrder);
         pseudotime = max(pseudotime(cellOrder))-pseudotime(cellOrder);

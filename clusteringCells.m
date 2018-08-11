@@ -16,7 +16,7 @@ if ~exist('C','var')
     C = [];
 end
 if ~exist('clusterRange','var') || isempty(clusterRange)
-    clusterRange = 2:10;
+    clusterRange = 3:10;
 end
 data = data(networkIfo.IDselect,:);
 rng('default'); %%% for reproducibility

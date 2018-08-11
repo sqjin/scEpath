@@ -3,9 +3,7 @@ function scEpath_demo
 % This demo can reproduce all the figures when analyzing LES data in our paper
 % clear the folder
 clc;clear;
-if exist('results', 'dir')
-    rmdir('results','s')
-end
+
 addpath(genpath('./'))
 
 %%%% running the first several steps of scEpath to calculate the single cell energy and transition probabilities, and infer cell lineages and pseudotime
@@ -41,16 +39,16 @@ ydata = ydata(:,1:2); % In this demo, only the first two significant components 
 %% step 5: perform unsupervised clustering of single cell data
 C = []; % set C to be empty if one would like to determine the number of clusters by eigengap; otherwise please provide the number of desired clusters
 y = clusteringCells(proData.data,networkIfo,C); % the cluster label of each cell
-% reorder the clusters such that the scEnergies decrease
-clusterOrder = []; % by default: the clusters are reordered such that the first one has biggest average scEnergy (i.e., the fist one will be the initial state in cell lineages)
-clusterIfo = reorderClusterLabels(y,scEcell,clusterOrder);
+
+clusterIfo = addClusterInfo(y);% user can also add external clustering results here. y can be either a numerical or cell array.
 % clusterIfo.identity: the updated cluster label of each cell
 % clusterIfo.idxCluster: a cell array, each cell contains the index of cells belong to the each cluster
+rootNode = inferStart(clusterIfo.identity,scEcell)
 numCluster = length(unique(clusterIfo.identity));
 
 %% step 6: infer the cell lineage hierarchy
 alpha = 0.01; theta1 = 0.8; % default parameters (see functions for details):
-lineageIfo = inferingLineage(scEcell,ydata,clusterIfo,alpha,theta1);
+lineageIfo = inferingLineage(scEcell,ydata,clusterIfo,rootNode,alpha,theta1);
 % lineageIfo.TP: transition probability TP
 % lineageIfo.MDST: minimal directed spanning tree, i.e.,the inferred lineage
 % lineageIfo.path: the node in each path
@@ -59,7 +57,7 @@ lineageIfo = inferingLineage(scEcell,ydata,clusterIfo,alpha,theta1);
 
 %% step 7: reconstruct pseudotime
 % Replace the following line by the appropriate path for Rscript
-% Rscript = '"C:\Program Files\R\R-3.3.2\bin\Rscript"'; % for 64-bit windows
+% Rscript = '"C:\Program Files\R\R-3.4.0\bin\Rscript"'; % for 64-bit windows
 Rscript = '"/usr/local/bin/Rscript"'; % for Mac OS
 pseudotimeIfo = inferingPseudotime(Rscript,ydata,lineageIfo,clusterIfo);
 % pseudotimeIfo.pseudotime: a cell array, each cell gives pseudotime value for each path
@@ -69,8 +67,7 @@ pseudotimeIfo = inferingPseudotime(Rscript,ydata,lineageIfo,clusterIfo);
 
 %%%% visualization of results including clustering, cell lineage hierarchy, scEnergy comparison and energy landscape
 %% plotting
-colorCell = distinguishable_colors(numCluster+1);% colors for each cluster
-colorCell(4,:) = []; % the fourth color is black
+colorCell = distinguishable_colors(numCluster);% colors for each cluster
 group = clusterIfo.identity; % m x 1 numerical vector, the cluster assignment for each cell
 class_labels = strcat('C',cellstr(num2str([1:numCluster]'))); % text annotations of each cluster
 
@@ -116,14 +113,14 @@ plot_genes_in_pseudotime(my_genes,proData,smoothExprIfo,pseudotimeIfo,lineageIfo
 
 % (3) identify pseudotime dependent genes
 % Note: results of the following analyses may be slightly different with the results presented in our paper because of the use of "random number generator" in identifying pseudotime dependent genes
-sd_thresh = 0.5; sig_thresh = 0.01;nboot = 1000; % default parameters (see functions for details):
+sd_thresh = 0.5; sig_thresh = 0.01;nboot = 1000; % default parameters (see functions for details). nboot can be changed to 500 or less
 PDGIfo = identify_pseudotime_dependent_genes(proData,smoothExprIfo,pseudotimeIfo,sd_thresh,sig_thresh,nboot);
 %   PDGIfo.PDG : a cell array, each cell contains the identified pseudotime-dependent genes for each path
 %   PDGIfo.allGenes: a cell array, each cell contains the genes with their calculated adjusted P-values and standard deviation
 
 % (4) create "rolling wave" showing the temporal pattern of pseudotime dependent genes and identify gene clusters showing similar pattern
 optimalK = 8; % the number of desired gene clusters
-pathUsed = 2; % order the pseudotime-dependent genes based on their peak expression in the "pathUsed" branch. e.g. pathUsed = 1
+pathUsed = 1; % order the pseudotime-dependent genes based on their peak expression in the "pathUsed" branch. e.g. pathUsed = 1
 PDGIfo = plot_rolling_wave(PDGIfo,smoothExprIfo,proData,optimalK,pathUsed);
 % PDGIfo: update the PDG information (see functions for details).
 

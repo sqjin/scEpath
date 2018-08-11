@@ -1,9 +1,10 @@
-function lineageIfo = inferingLineage(sEcell,ydata,clusterIfo,alpha,thresh)
+function lineageIfo = inferingLineage(sEcell,ydata,clusterIfo,rootNode,alpha,thresh)
 % reconstruct the pseudotime 
 % Inputs: 
 %   scEcell : m x 1 vector, single cell energy
 %   ydata : m x nPC, nPC-D coordindates from dimension reduction
 %   clusterIfo : a struct giving the cell cluster information
+%   rootNode : the root node (i.e., start state) for inferring cell lineages
 %   alpha : significance level for a two-sided Wilcoxon rank-sum test of the distribution of scEnergy between two metacell,default= 0.01
 %   thresh : proportion of cells included in the metacell, default= 0.8
 % Outputs:
@@ -85,7 +86,6 @@ for i = 1:size(C,1)
 end
 
 %% (4) find the minimal directed spanning tree
-rootNode = 1;
 MDST = FindMDST(A,rootNode,0);
 MDST = digraph(MDST);
 
@@ -105,4 +105,5 @@ lineageIfo.MDST = MDST; % minimal directed spanning tree, i.e.,the inferred line
 lineageIfo.path = path; % the node in each path
 lineageIfo.PDG = A; % the constructed probabilistic directed graph
 lineageIfo.centroid = centroidCoreCell; % the centroid of each core cell
+lineageIfo.rootNode = rootNode;
 

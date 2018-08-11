@@ -26,7 +26,7 @@ end
 [my_genes,~,idxmy_genes] = intersect(my_genes,proData.genes,'stable');
 
 figure('position', [600, 0, fig_width, fig_height])
-
+ha = tight_subplot(length(my_genes),length(smoothExprIfo),[0.015,0.04],[0.08 0.05],[0.25 0.05]);
 for j = 1:length(smoothExprIfo)
     pseudotime = pseudotimeIfo.pseudotime{j};
     cellOrder = pseudotimeIfo.cellOrder{j};
@@ -36,8 +36,18 @@ for j = 1:length(smoothExprIfo)
     xii = linspace(min(pseudotime),max(pseudotime),length(pseudotime));
     
     for i = 1:length(my_genes)
-        subplot(length(my_genes),length(smoothExprIfo),length(smoothExprIfo)*(i-1)+j)
-        gscatter(pseudotime, dataMarkers(i,:),group(cellOrder)',colorCell(lineageIfo.path{j},:),[],marker_size);
+       % subplot(length(my_genes),length(smoothExprIfo),length(smoothExprIfo)*(i-1)+j)
+       axes(ha(length(smoothExprIfo)*(i-1)+j))
+       if isnumeric(color_by)
+            gscatter(pseudotime, dataMarkers(i,:),color_by(cellOrder),colorCell(unique(lineageIfo.path{j}),:),[],marker_size);
+        elseif iscell(color_by)
+            gscatter(pseudotime, dataMarkers(i,:),color_by(cellOrder),colorCell(lineageIfo.path{j},:),[],marker_size);
+        elseif all(iscategory(color_by,class_labels_order)) && ~isempty(class_labels) && ~isempty(class_labels_order)
+            color_by = reordercats(color_by,class_labels_order);
+            g = unique(color_by(cellOrder));
+            [~,~,idx] = intersect(g,class_labels,'stable');
+            gscatter(pseudotime, dataMarkers(i,:),color_by(cellOrder),colorCell(idx,:),[],marker_size);
+        end
         hold on
         plot(xii,smoothCurveTemp(i,:),'k-','Linewidth',1)
         set(gca,'Xtick',[]);
@@ -45,7 +55,12 @@ for j = 1:length(smoothExprIfo)
         set(gca,'FontName','Arial','FontSize',8)
         if i == length(my_genes)
             xlabel('Pseudotime','FontName','Arial','FontSize',10)
+            if max(pseudotime) <= 1
             set(gca,'Xtick',0:0.5:1);
+            else
+                set(gca,'Xtick',0:floor(max(pseudotime)/2):floor(max(pseudotime)));
+            end
+
         end
         if i == 1
             title(['Path ',num2str(j)],'FontName','Arial','FontSize',10)
@@ -55,10 +70,13 @@ for j = 1:length(smoothExprIfo)
             % title(markers{i},'FontName','Arial','FontSize',10,'FontWeight','bold')
         end
         axis tight
+        if i ~= 1
         legend off
+        end
         yl = ylim(gca);
         yl(1) = min([0,yl(1)]);
         ylim(gca, yl);
+        box off
     end
 end
 folderName = fullfile('results','figures');

@@ -120,7 +120,7 @@ for i = 1:optimalK
     idxGeneOrder{i} = idxGroupgene{i}(idx);
 end
 
-%¡¡save the gene in each cluster
+%Â¡Â¡save the gene in each cluster
 folderName = fullfile('results','PDG_in_each_cluster');
 if ~exist(folderName, 'dir')
     mkdir(folderName);
@@ -161,6 +161,11 @@ for j = 1:length(smoothCurveIndi)
     set(gca,'Xtick',[1 size(smoothCurve,2)/2 size(smoothCurve,2)]);
     set(gca,'XtickLabel',0:0.5:1);
     set(gca,'Ytick',[]);
+    if length(PDGordered) < 100
+     set(gca,'Ytick',1:1:length(PDGordered));
+     set(gca,'YtickLabel',PDGordered,'FontName','Arial','FontSize',8)
+    end
+
     colormap(jet)
     title(['Path ' num2str(j)],'FontName','Arial','FontSize',10);
     if j == length(smoothCurveIndi)
@@ -226,10 +231,15 @@ for j = 1:length(smoothCurveIndi)
                 plot(xii,groupCenter(i,:),'LineWidth',1.5,'color',colorClusters(i,:),'LineStyle','-.');
             end
         end
-        set(gca,'Xtick',[]);
+      %  set(gca,'Xtick',[]);
         box on
         set(gca,'FontName','Arial','FontSize',8)
         ylim([0.95*min(value_min(:,i)) 1.05*max(value_max(:,i))])
+        yticks('auto')
+        yticklabels('auto')
+        box off
+        set(gca,'Xtick',[]);
+
         if i == optimalK
             set(gca,'Xtick',[min(xii) range(xii)/2 max(xii)]);
             set(gca,'XtickLabel',0:0.5:1);

@@ -78,7 +78,7 @@ if showFigure
     box on
     grid on
         
-    folderName = fullfile('results','figures');
+    folderName = fullfile(pwd,'results','figures');
     if ~exist(folderName, 'dir')
         mkdir(folderName);
     end

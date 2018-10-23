@@ -9,9 +9,10 @@ require("princurve")
 args <- commandArgs()
 baseName <- args[6]
 
-infile1 <- paste(getwd(), baseName, "ydata.txt", sep="/") 
-infile2 <- paste(getwd(), baseName, "ydataOutCell.txt", sep="/") 
-infile3 <- paste(getwd(), baseName,  "pathLength.txt", sep="/") 
+#infile1 <- paste(getwd(), baseName, "ydata.txt", sep="/") 
+infile1 <- paste(baseName, "ydata.txt", sep="/") 
+infile2 <- paste(baseName, "ydataOutCell.txt", sep="/") 
+infile3 <- paste(baseName,  "pathLength.txt", sep="/") 
 
 ydata <- read.table(file=infile1, sep="\t",header=FALSE)
 ydataOutCell <- read.table(file=infile2, sep="\t",header=FALSE)
@@ -26,10 +27,11 @@ fitpc <- principal.curve(y, smoother="smooth.spline", df=pathLength+1,plot = TRU
 projectionpc <- get.lam(yOutCell, fitpc$s, fitpc$tag, stretch = 2)
 
 
-pcvout1 <- paste(getwd(), baseName,  "PcurveProjectionValueMainCell.txt", sep="/")
-pcvout2 <- paste(getwd(),  baseName, "PcurveProjectionValueOutCell.txt", sep="/")
-lambdaout1 <- paste(getwd(),  baseName, "PcurveLambdaMainCell.txt", sep="/")
-lambdaout2 <- paste(getwd(),  baseName,  "PcurveLambdaOutCell.txt", sep="/")
+# pcvout1 <- paste(getwd(), baseName,  "PcurveProjectionValueMainCell.txt", sep="/")
+pcvout1 <- paste(baseName,  "PcurveProjectionValueMainCell.txt", sep="/")
+pcvout2 <- paste(baseName, "PcurveProjectionValueOutCell.txt", sep="/")
+lambdaout1 <- paste(baseName, "PcurveLambdaMainCell.txt", sep="/")
+lambdaout2 <- paste(baseName,  "PcurveLambdaOutCell.txt", sep="/")
 
 write.table(file=pcvout1, fitpc$s, sep="\t", row.names = FALSE, col.names = FALSE)
 write.table(file=pcvout2, projectionpc$s, sep="\t", row.names = FALSE, col.names = FALSE)

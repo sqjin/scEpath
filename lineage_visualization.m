@@ -30,7 +30,7 @@ if ~showLoops
 end
 
 h = plot(MDST,'EdgeAlpha',0.8,'EdgeColor','k','LineWidth',1,'NodeColor',colorCell);
-layout(h,'layered','Sources',1)
+layout(h,'layered','Sources',lineageIfo.rootNode)
 set(h,'MarkerSize',node_size)
 set(h,'EdgeLabel',round(MDST.Edges.Weight*10^2)/10^2)
 set(h,'NodeLabel',[])

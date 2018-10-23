@@ -1,10 +1,11 @@
 function scEpath_demo
 % This is a demo showing how to running scEpath using mouse lung epithelial specification single cell RNA-seq data (LES data)
 % This demo can reproduce all the figures when analyzing LES data in our paper
-% clear the folder
 clc;clear;
 
-addpath(genpath('./'))
+%% add the path where the codes are located
+path_codes = '/Users/XXX/Downloads/scEpath-master/';
+addpath(genpath(path_codes)) % or simply use addpath(genpath('./')) if current directory is ./scEpath-master/
 
 %%%% running the first several steps of scEpath to calculate the single cell energy and transition probabilities, and infer cell lineages and pseudotime
 %% step 1: load data and (if applicable) cell attributes (such as cell type, culture condition, day captured)

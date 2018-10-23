@@ -50,14 +50,16 @@ for j = 1:length(path)
     dlmwrite(fullfile(filefolder,'ydataOutCell.txt'),ydataFOutCellpathj,'delimiter','\t','precision','%.4f');
     dlmwrite(fullfile(filefolder,'pathLength.txt'),length(path{j}),'delimiter','\t');
     % Calling R's principal curve
-    eval([' system([', '''', Rscript, ' principal_curve_fitting.R ', '''', ' filefolder]);']);
+    RscriptFileName = ' ./principal_curve_fitting.R '; % the full path of the R script to execute. Default: current directory is ./scEpath-master/
+    % User can change the default path to the path that codes are located in, e.g., /Users/XXX/Downloads/scEpath-master/principal_curve_fitting.R 
+    eval([' system([', '''', Rscript, RscriptFileName, '''', ' filefolder]);']);
     try
         pseudotimeMainCell = importdata(fullfile(filefolder,'PcurveLambdaMainCell.txt'));
         projectionsPcurveMaincell = importdata(fullfile(filefolder,'PcurveProjectionValueMainCell.txt'));
         pseudotimeOutCell = importdata(fullfile(filefolder,'PcurveLambdaOutCell.txt'));
         projectionsPcurveOutCell = importdata(fullfile(filefolder,'PcurveProjectionValueOutCell.txt'));
     catch
-        warning('Please check if the R package "princurve" has been successfully installed!')
+        error(sprintf('Error!!! Please check if the R package "princurve" has been successfully installed!\n or check if the path in "RscriptFileName" is correct!'))
     end
     dlmwrite(fullfile(filefolder,['PcurveLambdaMainCellPath' num2str(j) '.txt']),pseudotimeMainCell,'delimiter','\t','precision','%.4f');
     dlmwrite(fullfile(filefolder,['PcurveProjectionValueMainCellPath' num2str(j) '.txt']),projectionsPcurveMaincell,'delimiter','\t','precision','%.4f');

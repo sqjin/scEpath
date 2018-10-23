@@ -58,7 +58,7 @@ if showFigure
     xlim([0.5 length(y)+0.5]);
     xlabel('Cells','FontName','Arial','FontSize',10)
     ylabel('Cells','FontName','Arial','FontSize',10)
-    folderName = fullfile('results','figures');
+    folderName = fullfile(pwd,'results','figures');
     if ~exist(folderName, 'dir')
         mkdir(folderName);
     end

@@ -60,6 +60,7 @@ lineageIfo = inferingLineage(scEcell,ydata,clusterIfo,rootNode,alpha,theta1);
 % Replace the following line by the appropriate path for Rscript
 % Rscript = '"C:\Program Files\R\R-3.4.0\bin\Rscript"'; % for 64-bit windows
 Rscript = '"/usr/local/bin/Rscript"'; % for Mac OS
+% User may also need to change the path of R script to execute inside inferingPseudotime.m if current directory is not ./scEpath-master/
 pseudotimeIfo = inferingPseudotime(Rscript,ydata,lineageIfo,clusterIfo);
 % pseudotimeIfo.pseudotime: a cell array, each cell gives pseudotime value for each path
 % pseudotimeIfo.cellOrder: a cell array, each cell gives cell order for each path

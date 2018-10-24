@@ -59,7 +59,7 @@ for j = 1:length(path)
         pseudotimeOutCell = importdata(fullfile(filefolder,'PcurveLambdaOutCell.txt'));
         projectionsPcurveOutCell = importdata(fullfile(filefolder,'PcurveProjectionValueOutCell.txt'));
     catch
-        error(sprintf('Error!!! Please check if the R package "princurve" has been successfully installed!\n or check if the path in "RscriptFileName" is correct!'))
+        error(sprintf('Error!!! Please check if the R package "princurve" has been successfully installed!'))
     end
     dlmwrite(fullfile(filefolder,['PcurveLambdaMainCellPath' num2str(j) '.txt']),pseudotimeMainCell,'delimiter','\t','precision','%.4f');
     dlmwrite(fullfile(filefolder,['PcurveProjectionValueMainCellPath' num2str(j) '.txt']),projectionsPcurveMaincell,'delimiter','\t','precision','%.4f');

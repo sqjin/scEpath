@@ -122,7 +122,7 @@ if showFigure
     xlabel('Number of clusters','FontName','Arial','FontSize',10)
     ylabel('Eigengap','FontName','Arial','FontSize',10)
     set(gca,'Xtick',NUMC)
-    folderName = fullfile('results','figures');
+    folderName = fullfile(pwd,'results','figures');
     if ~exist(folderName, 'dir')
         mkdir(folderName);
     end

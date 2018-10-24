@@ -50,9 +50,6 @@ for j = 1:length(path)
     dlmwrite(fullfile(filefolder,'ydataOutCell.txt'),ydataFOutCellpathj,'delimiter','\t','precision','%.4f');
     dlmwrite(fullfile(filefolder,'pathLength.txt'),length(path{j}),'delimiter','\t');
     % Calling R's principal curve
-    if ~exist(fullfile(pwd,'principal_curve_fitting.R'),'file')
-        error(sprintf('Error!!! Here please change the default path in "RscriptFileName" so that principal_curve_fitting.R can be found!'))
-    end
     RscriptFileName = ' ./principal_curve_fitting.R '; % the full path of the R script to execute. Default: current directory is ./scEpath-master/
     % User can change the default path to the path where codes are located, e.g., RscriptFileName = ' /Users/XXX/Downloads/scEpath-master/principal_curve_fitting.R '; 
     eval([' system([', '''', Rscript, RscriptFileName, '''', ' filefolder]);']);

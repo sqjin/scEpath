@@ -40,7 +40,7 @@ for j = 1:length(smoothExprIfo)
     p = nReject/nboot;
     % compute the adjusted P-values (BH correction)
     padj = mafdr(p,'BHFDR',true);
-    padj(SDnull < sd_thresh) = NaN; % can use a smaller variance threshold, e.g. 0.05
+   % padj(SDnull < sd_thresh) = NaN; % can use a smaller variance threshold, e.g. 0.05
     Tpath{j} = table(proData.genes,padj,SDnull,'VariableNames',{'genes','padj','SD'});
     Tpath{j} = sortrows(Tpath{j},{'padj','SD'},{'ascend','descend'});
     PDG = Tpath{j}.genes(Tpath{j}.padj < sig_thresh);

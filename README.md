@@ -9,6 +9,8 @@ This is a MATLAB Package of scEpath ("single-cell Energy path"). scEpath is a no
 
 Check out [our paper on Bioinformatics](https://academic.oup.com/bioinformatics/article/34/12/2077/4838235) for the detailed methods and applications. 
 
+![Overview of scEpath](https://academic.oup.com/view-large/figure/117878364/bty058f1.tif)
+
 Systems Requirements
 --------------------
 

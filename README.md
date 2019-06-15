@@ -1,11 +1,13 @@
 # scEpath
-MATLAB Package of scEpath (a novel tool for analyzing single cell RNA-seq data)
+Package of scEpath (a novel tool for analyzing single cell RNA-seq data)
 ===============
 
 Overview
 --------
 
 This is a MATLAB Package of scEpath ("single-cell Energy path"). scEpath is a novel computational method for quantitatively measuring developmental potency and plasticity of single cells and transition probabilities between cell states, and inferring lineage relationships and pseudotemporal ordering from single-cell gene expression data. In addition, scEpath performs many downstream analyses including identification of the most important marker genes or transcription factors for given cell clusters or over pseudotime.
+
+Check out [our paper on Bioinformatics](https://academic.oup.com/bioinformatics/article/34/12/2077/4838235) for the detailed methods and applications. 
 
 Systems Requirements
 --------------------

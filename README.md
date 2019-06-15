@@ -7,15 +7,16 @@ Overview
 
 This is a MATLAB Package of scEpath ("single-cell Energy path"). scEpath is a novel computational method for quantitatively measuring developmental potency and plasticity of single cells and transition probabilities between cell states, and inferring lineage relationships and pseudotemporal ordering from single-cell gene expression data. In addition, scEpath performs many downstream analyses including identification of the most important marker genes or transcription factors for given cell clusters or over pseudotime.
 
-The rational of scEpath for inferring cellular trajectories is based on the famous Waddington's landscape metaphor for describing the cellular dynamics during the development. Below is a conceptual illustration from a paper (Takahashi et.al. Development, 2015)
+The rational of scEpath for inferring cellular trajectories is based on the famous Waddington's landscape metaphor for describing the cellular dynamics during the development. Below is a conceptual illustration from a paper (Takahashi et al. Development, 2015)
 
-<img src="https://github.com/sqjin/scEpath/blob/master/example_data/Waddington's%20landscape.jpg" width="500">
+<img src="https://github.com/sqjin/scEpath/blob/master/example_data/Waddington's%20landscape.jpg" width="400" align="center">
 
 
 
-Check out [our paper on Bioinformatics](https://academic.oup.com/bioinformatics/article/34/12/2077/4838235) for the detailed methods and applications. 
+Check out [our paper (Jin et al. Bioinformatics, 2018](https://academic.oup.com/bioinformatics/article/34/12/2077/4838235) for the detailed methods and applications. Below is the overview of scEpath.
 
 ![Overview of scEpath](https://github.com/sqjin/scEpath/blob/master/example_data/overview_scEpath.png)
+
 
 Systems Requirements
 --------------------

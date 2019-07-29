@@ -65,7 +65,12 @@ for i = 1:optimalK
     groupCenter(i,:) = 0.25*Q(1,:)+0.5*Q(2,:)+0.25*Q(3,:);
     [groupMax,idxMax] = max(groupCenter(i,:));
     [~,idxDecay] = find(abs(groupCenter(i,:)-(min(groupCenter(i,:))+range(groupCenter(i,:))/2))<0.05*max(groupCenter(i,:)),1,'last');
-    locMax(i) = xii(idxMax);locDecay(i) = xii(idxDecay);
+    locMax(i) = xii(idxMax);
+    if ~isempty(idxDecay)
+        locDecay(i) = xii(idxDecay);
+    else
+        locDecay(i) = locMax(i);
+    end
 end
 
 [locMaxS,idx1] = sort(locMax);idx2 = find(diff(locMaxS) <= 0.1);

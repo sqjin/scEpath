@@ -239,7 +239,7 @@ for j = 1:length(smoothCurveIndi)
       %  set(gca,'Xtick',[]);
         box on
         set(gca,'FontName','Arial','FontSize',8)
-        ylim([0.95*min(value_min(:,i)) 1.05*max(value_max(:,i))])
+        ylim([0.95*min(value_min(:,i)) 1.05*max(value_max(:,i))+eps])
         yticks('auto')
         yticklabels('auto')
         box off

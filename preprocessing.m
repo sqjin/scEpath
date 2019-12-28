@@ -42,8 +42,10 @@ end
 dataTemp = data0;
 dataTemp(find(data0 > 0)) = 1;
 msum = sum(dataTemp,1);
+if sum(msum < minGenes) > 0
 data0(:,msum < minGenes) = [];
 iniData.cells(msum < minGenes,:) = [];
+end
 %% filter genes that only express less than #3 cells
 dataTemp = data0;
 dataTemp(find(data0 > 0)) = 1;

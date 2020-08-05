@@ -36,7 +36,7 @@ This directory includes the following main scripts:
 2) preprocessing.m -- do preprocessing of the input data (if applicable) 
 3) constructingNetwork.m -- construct a gene-gene co-expression network
 4) estimatingscEnergy.m -- estimate the single cell energy (scEnergy) for each cell
-5) ECA.m -- prinpipal component analysis of energy matrix
+5) ECA.m -- principal component analysis of energy matrix
 6) clusteringCells.m -- perform unsupervised clustering of single cell data
 7) addClusterInfo.m -- integrate clustering information
 8) inferingLineage.m -- infer the cell lineage hierarchy

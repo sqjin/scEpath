@@ -22,9 +22,11 @@ y <- data.matrix(ydata)
 yOutCell <- data.matrix(ydataOutCell)
 pathLength <-data.matrix(pathLength)
 
-fitpc <- principal.curve(y, smoother="smooth.spline", df=pathLength+1,plot = TRUE, maxit = 50)
+# fitpc <- principal.curve(y, smoother="smooth.spline", df=pathLength+1,plot = TRUE, maxit = 50) # This function is deprecated
+fitpc <- principal_curve(y, smoother="smooth.spline", df=pathLength+1,plot = TRUE, maxit = 50)
 
-projectionpc <- get.lam(yOutCell, fitpc$s, fitpc$tag, stretch = 2)
+# projectionpc <- get.lam(yOutCell, fitpc$s, fitpc$tag, stretch = 2)# This function is deprecated
+projectionpc <- project_to_curve(yOutCell, fitpc$s, stretch = 2)
 
 
 # pcvout1 <- paste(getwd(), baseName,  "PcurveProjectionValueMainCell.txt", sep="/")

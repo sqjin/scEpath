@@ -4,3 +4,4 @@
 *.mexa64 -linguist-detectable
 *.mexmaci64 -linguist-detectable
 *.mexw64 -linguist-detectable
+*.txt -linguist-detectable

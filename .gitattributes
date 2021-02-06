@@ -1,3 +1,6 @@
 *.c -linguist-detectable
 *.cpp -linguist-detectable
 *.h -linguist-detectable
+*.mexa64 -linguist-detectable
+*.mexmaci64 -linguist-detectable
+*.mexw64 -linguist-detectable

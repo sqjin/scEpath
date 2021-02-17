@@ -19,10 +19,11 @@ data = (data-repmat(emin,size(data,1),1))./repmat((emax-emin),size(data,1),1);
 
 %% load network information
 A = networkIfo.R+networkIfo.R';
-A(logical(eye(size(A)))) = 1;
+%A(logical(eye(size(A)))) = 1;
 dataSumNeibor = zeros(size(data));
 for i = 1:size(A,1)
-    a = A(i,:) ~= 0;
+    a = find(A(i,:));
+    a = [a,i];
     dataSumNeibor(i,:) = sum(data(a,:));
 end
 %% calculate the  scEnergy for each cell
